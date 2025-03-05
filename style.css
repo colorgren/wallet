@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-h1, h2, p {
+h1,
+h2,
+p {
     font-family: Poppins;
     margin: 0;
 }
@@ -14,11 +16,13 @@ a {
     text-decoration: inherit;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent whole page scrolling */
+    overflow: hidden;
+    /* Prevent whole page scrolling */
 }
 
 
@@ -29,10 +33,12 @@ body {
 
 main {
     flex: 1;
-    overflow-y: auto; /* Enable scrolling only for main */
+    overflow-y: auto;
+    /* Enable scrolling only for main */
     position: relative;
     /* Add padding to account for footer height */
-    padding-bottom: 60px; /* Adjust based on footer height */
+    padding-bottom: 60px;
+    /* Adjust based on footer height */
 }
 
 footer {
@@ -42,14 +48,18 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100; /* Ensure footer stays on top */
-    height: 75px; /* Set explicit height */
-    box-sizing: border-box; /* Include padding in height */
+    z-index: 100;
+    /* Ensure footer stays on top */
+    height: 75px;
+    /* Set explicit height */
+    box-sizing: border-box;
+    /* Include padding in height */
     gap: 7px;
 
     display: flex;
     justify-content: center;
-    padding: 10px 20px; /* Add horizontal padding */
+    padding: 10px 20px;
+    /* Add horizontal padding */
 }
 
 .footbtn {
@@ -62,26 +72,34 @@ footer {
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    flex: 1; /* Make buttons grow equally */
-    max-width: 200px; /* Optional: prevent buttons from getting too wide */
-    min-width: 80px; /* Optional: prevent buttons from getting too narrow */
-    margin: 0 5px; /* Add spacing between buttons */
-    width: 100%; /* Take full available width */
+    flex: 1;
+    /* Make buttons grow equally */
+    max-width: 200px;
+    /* Optional: prevent buttons from getting too wide */
+    min-width: 80px;
+    /* Optional: prevent buttons from getting too narrow */
+    margin: 0 5px;
+    /* Add spacing between buttons */
+    width: 100%;
+    /* Take full available width */
 }
 
 .footbtn.active {
-    background: #4CAF50; /* Green color for active state */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background: #4CAF50;
+    /* Green color for active state */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Optional: Add hover effect */
 .footbtn:hover {
-    background: #c08027; /* Darker orange */
+    background: #c08027;
+    /* Darker orange */
 }
 
 .footbtn.active:hover {
-    background: #337b35; /* Darker green */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background: #337b35;
+    /* Darker green */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .footbtn p {
@@ -94,8 +112,10 @@ header {
     background: #e0e0e0;
     padding: 20px;
     display: flex;
-    justify-content: space-between; /* Ensure proper spacing */
-    align-items: center; /* Vertical alignment */
+    justify-content: space-between;
+    /* Ensure proper spacing */
+    align-items: center;
+    /* Vertical alignment */
 }
 
 .logo {
@@ -110,12 +130,12 @@ header {
     display: none;
 }
 
-/* Add Page Styles */
-#add-page {
+/* Page Styles (applied to both add-page and edit-page) */
+#add-page, #edit-page {
     padding: 20px;
 }
 
-.add-form {
+.add-form, .edit-form { /* Styles for both add-form and edit-form */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -123,7 +143,10 @@ header {
     margin: 0 auto;
 }
 
-.add-form input, .add-form select {
+.add-form input,
+.add-form select,
+.edit-form input,          /* Apply input styles to edit form too */
+.edit-form select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -144,11 +167,11 @@ header {
     cursor: pointer;
 }
 
-.cancel-btn {
+.cancel-btn, .edit-cancel-btn {     /* Apply cancel-btn styles to edit-cancel-btn */
     background: #cccccc;
 }
 
-.submit-btn {
+.submit-btn, .edit-submit-btn {     /* Apply submit-btn styles to edit-submit-btn */
     background: #4CAF50;
     color: white;
 }
@@ -159,7 +182,7 @@ header {
     margin: 10px 0;
 }
 
-.type-btn {
+.type-btn, .edit-type-btn {         /* Apply type-btn styles to edit-type-btn */
     flex: 1;
     padding: 12px;
     border: 2px solid #ddd;
@@ -172,14 +195,15 @@ header {
     color: #666;
 }
 
-.type-btn.selected {
+.type-btn.selected, .edit-type-btn.selected { /* Apply selected styles to both */
     background: #4CAF50;
     color: white;
     border-color: #4CAF50;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.type-btn:hover:not(.selected) {
+.type-btn:hover:not(.selected),
+.edit-type-btn:hover:not(.selected) {  /* Apply hover styles to both */
     background: #e8e8e8;
 }
 
@@ -193,7 +217,7 @@ header {
     border-bottom: 1px solid #ddd;
 }
 
-.view-toggle {
+.view-toggle, .edit-view-toggle {    /* Apply view-toggle styles to edit-view-toggle */
     flex: 1;
     padding: 12px 20px;
     border: none;
@@ -203,13 +227,13 @@ header {
     transition: all 0.2s ease;
 }
 
-.view-toggle.active {
+.view-toggle.active, .edit-view-toggle.active { /* Apply active styles to both */
     background: #4CAF50;
     color: white;
 }
 
 /* View Containers */
-.view-container {
+.view-container, .edit-view-container { /* Apply view-container styles to edit-view-container */
     position: fixed;
     top: 0;
     left: 0;
@@ -221,7 +245,7 @@ header {
     overflow-y: auto;
 }
 
-.option-item {
+.option-item, .edit-wallet-option, .edit-category-option { /*Apply option-item styles to edit options*/
     margin: 10px 0;
     padding: 15px;
     border: 1px solid #ddd;
@@ -231,10 +255,19 @@ header {
     transition: all 0.2s ease;
 }
 
-.option-item:hover {
+.option-item:hover,
+.edit-wallet-option:hover,
+.edit-category-option:hover {
     background: #f8f8f8;
     transform: translateY(-2px);
 }
+
+.option-item.selected,
+.edit-wallet-option.selected,
+.edit-category-option.selected {
+    background-color: #e0e0e0; /* Slightly highlighted selected option */
+}
+
 
 .hidden {
     display: none;
@@ -248,9 +281,9 @@ footer.hidden {
 
 .page {
     display: none;
-    opacity: 0;
     transition: opacity 0.3s ease;
-    min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+    min-height: calc(100vh - 150px);
+    /* Adjust based on header/footer height */
 }
 
 .page.active {
@@ -273,12 +306,14 @@ footer.hidden {
     background-color: inherit;
     border-radius: 10px;
     padding: 5px;
-    flex: 1; /* Make buttons grow equally */
-    margin: 0 3px; /* Add spacing between buttons */
+    flex: 1;
+    /* Make buttons grow equally */
+    margin: 0 3px;
+    /* Add spacing between buttons */
     transition: background-color 0.5s ease;
 }
 
-.toptableinfo p.val{
+.toptableinfo p.val {
     font-weight: 600;
 }
 
@@ -287,40 +322,44 @@ footer.hidden {
 }
 
 .valueyellow {
-    background-color:#de8f21;
+    background-color: #de8f21;
 }
 
 .valueorange {
-    background-color:#da5411;
+    background-color: #da5411;
 }
 
 .valuered {
-    background-color:firebrick;
+    background-color: firebrick;
 }
 
 .datetime-row {
     display: flex;
     gap: 15px;
     margin: 5px 0;
-    width: 100%; /* Ensure full width */
+    width: 100%;
+    /* Ensure full width */
 }
 
 .datetime-group {
     flex: 1;
     min-width: 120px;
-    max-width: 200px; /* Prevent excessive widening */
+    max-width: 200px;
+    /* Prevent excessive widening */
 }
 
 input[type="date"],
 input[type="time"] {
-    width: calc(100% - 24px); /* Account for padding */
+    width: 100%;
+    /* Account for padding */
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-family: Poppins;
     font-size: 14px;
     background: white;
-    box-sizing: border-box; /* Include padding in width */
+    box-sizing: border-box;
+    /* Include padding in width */
 }
 
 /* Make inputs look consistent across browsers */
@@ -347,13 +386,25 @@ input[type="time"]:focus {
 
 .receiptarea {
     padding: 10px;
+    position: relative;
+    /* For popup positioning context */
 }
 
 .transdiv {
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+    /* Indicate click interaction now */
+    position: relative;
+    /* To contain popup if needed */
 }
+
+.transdiv:hover {
+    background-color: #f0f0f0;
+    /* Highlight on hover */
+}
+
 
 .transcat {
     font-size: 20px;
@@ -391,4 +442,118 @@ input[type="time"]:focus {
     padding: 40px;
     color: #666;
     font-style: italic;
+}
+
+
+/* Popup Styles */
+.popup {
+    position: fixed;
+    /* Changed from absolute to fixed */
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    position: relative;
+    /* To position close button */
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.popup h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    /* Adjust if needed */
+}
+
+.popup p {
+    margin-bottom: 8px;
+}
+
+.popup-label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.popup-buttons button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#edit-transaction-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+#delete-transaction-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+#delete-transaction-btn:hover {
+    background-color: #d32f2f;
+}
+
+#edit-transaction-btn:hover {
+    background-color: #1976D2;
+}
+
+.close-btn {
+    position: relative;
+    /* Positioned relative to .popup-content */
+    top: 0px;
+    right: 0px;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    /* Adjust color as needed */
+    line-height: 1;
+    /* Adjust line height for vertical centering */
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.add-form, .edit-form { /* Styles for both add-form and edit-form - COMBINED STYLES */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px; /* Added padding here, to be consistent with your previous CSS*/
 }

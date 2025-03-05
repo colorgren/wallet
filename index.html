@@ -10,142 +10,214 @@
 </head>
 
 <body>
-        <header>
-            <div class="logo">
-                <h1>WalletOnline</h1>
-                <p>beta</p>
+    <header>
+        <div class="logo">
+            <h1>WalletOnline</h1>
+            <p>beta</p>
+        </div>
+
+        <div class="addbtn">
+            <i class="material-icons" style="font-size:48px;color:darkslategrey;">add_circle</i>
+        </div>
+    </header>
+
+    <main>
+        <div class="page active" id="receipt-page">
+            <div class="toptable">
+                <div class="toptableinfo valuegreen">
+                    <p class="val">0.00</p>
+                    <p class="cat">Income</p>
+                </div>
+
+                <div class="toptableinfo valuered">
+                    <p class="val">0.00</p>
+                    <p class="cat">Expenses</p>
+                </div>
+
+                <div class="toptableinfo">
+                    <p class="val">0.00</p>
+                    <p class="cat">Balance</p>
+                </div>
+
+                <!-- <div class="toptableinfo valuegreen">
+                    <p class="val">250.00</p>
+                    <p class="cat">Savings</p>
+                </div> -->
             </div>
 
-            <div class="addbtn">
-                <i class="material-icons" style="font-size:48px;color:darkslategrey;">add_circle</i>
+            <div class="receiptarea">
+
             </div>
-        </header>
-        
-        <main>
-            <div class="page active" id="receipt-page">
-                <div class="toptable">
-                    <div class="toptableinfo valuegreen">
-                        <p class="val">1,888.88</p>
-                        <p class="cat">Income</p>
-                    </div>
-                    
-                    <div class="toptableinfo valuered">
-                        <p class="val">1,888.88</p>
-                        <p class="cat">Expenses</p>
+        </div>
+
+        <div class="page" id="overview-page">
+            <h2>Overview Content</h2>
+            <!-- Your overview content here -->
+        </div>
+
+        <div class="page" id="wallet-page">
+            <h2>Wallet Content</h2>
+            <!-- Your wallet content here -->
+        </div>
+
+        <div class="page" id="add-page">
+            <h2>Add New Transaction</h2>
+            <div class="add-form">
+
+                <div class="datetime-row">
+                    <div class="datetime-group" style="display: flex; justify-content: flex-end;">
+                        <input type="date" id="date-input" required>
                     </div>
 
-                    <!-- <div class="toptableinfo valuegreen">
-                        <p class="val">250.00</p>
-                        <p class="cat">Savings</p>
-                    </div> -->
-
-                    <div class="toptableinfo">
-                        <p class="val">50.00</p>
-                        <p class="cat">Balance</p>
+                    <div class="datetime-group" style="display: flex; justify-content: flex-start;">
+                        <input type="time" id="time-input" required>
                     </div>
                 </div>
 
-                <div class="receiptarea">
-                    
+                <div class="type-selector">
+                    <button class="type-btn" data-type="income">Income</button>
+                    <button class="type-btn selected" data-type="expense">Expense</button>
+                    <button class="type-btn" data-type="transfer">Transfer</button>
                 </div>
-            </div>
-            
-            <div class="page" id="overview-page">
-                <h2>Overview Content</h2>
-                <!-- Your overview content here -->
-            </div>
-            
-            <div class="page" id="wallet-page">
-                <h2>Wallet Content</h2>
-                <!-- Your wallet content here -->
-            </div>
+                <input type="hidden" name="type" value="expense">
 
-            <div class="page" id="add-page">
-                <h2>Add New Transaction</h2>
-                <div class="add-form">
+                <div class="filter-row">
+                    <button class="view-toggle" data-view="wallet">Wallet</button>
+                    <button class="view-toggle" data-view="category">Category</button>
+                </div>
 
-                    <div class="datetime-row">
-                        <div class="datetime-group" style="display: flex; justify-content: flex-end;">
-                            <input type="date" id="date-input" required>
-                            <!-- <label for="date-input" class="datetime-btn">
-                                <span class="datetime-label">Date</span>
-                                <span class="selected-date">Today</span>
-                            </label> -->
+                <input type="number" placeholder="Amount" step="0.01" id="amount">
+
+                <!-- Wallet Selection View -->
+                <div class="view-container wallet-view hidden">
+                    <div>
+                        <div class="option-item" data-value="cash">
+                            <span>Cash</span>
                         </div>
-                    
-                        <div class="datetime-group" style="display: flex; justify-content: flex-start;">
-                            <input type="time" id="time-input" required>
-                            <!-- <label for="time-input" class="datetime-btn">
-                                <span class="datetime-label">Time</span>
-                                <span class="selected-time">Now</span>
-                            </label> -->
+                        <div class="option-item" data-value="card">
+                            <span>Card</span>
                         </div>
-                    </div>
-                    
-                    <!-- In your add-page HTML, change the initial selected type button -->
-                    <div class="type-selector">
-                        <button class="type-btn" data-type="income">Income</button>
-                        <button class="type-btn selected" data-type="expense">Expense</button>
-                        <button class="type-btn" data-type="transfer">Transfer</button>
-                    </div>
-                    <input type="hidden" name="type" value="expense"> <!-- Changed from income -->
-                    
-
-                    <div class="filter-row">
-                        <button class="view-toggle" data-view="wallet">Wallet</button>
-                        <button class="view-toggle" data-view="category">Category</button>
-                    </div>
-
-                    <input type="number" placeholder="Amount" step="0.01">
-                    
-                    <!-- Wallet Selection View -->
-                    <div class="view-container wallet-view hidden">
-                        <div>
-                            <div class="option-item" data-value="cash">
-                                <!-- Add icon later -->
-                                <span>Cash</span>
-                            </div>
-                            <div class="option-item" data-value="card">
-                                <span>Card</span>
-                            </div>
-                            <div class="option-item" data-value="savings">
-                                <span>Savings</span>
-                            </div>
+                        <div class="option-item" data-value="savings">
+                            <span>Savings</span>
                         </div>
-                    </div>
-                    
-                    <!-- Category Selection View -->
-                    <div class="view-container category-view hidden">
-                        <div class="grid-view" id="category-grid">
-                            <!-- Dynamic content will be inserted here -->
-                        </div>
-                    </div>
-
-
-                    <input type="text" placeholder="Description">
-                    <div class="form-buttons">
-                        <button class="cancel-btn">Cancel</button>
-                        <button class="submit-btn">Add Transaction</button>
                     </div>
                 </div>
+
+                <!-- Category Selection View -->
+                <div class="view-container category-view hidden">
+                    <div class="grid-view" id="category-grid">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+
+                <input type="text" placeholder="Description" id="description">
+                <div class="form-buttons">
+                    <button class="cancel-btn">Cancel</button>
+                    <button class="submit-btn">Add Transaction</button>
+                </div>
+                <input type="hidden" id="transaction-id">
             </div>
-        </main>
+        </div>
+
+        <!-- NEW "EDIT TRANSACTION" SECTION -->
+        <div class="page" id="edit-page" style="display: none;">
+            <h2>Edit Transaction</h2>
+            <div class="edit-form">
+
+                <div class="datetime-row">
+                    <div class="datetime-group" style="display: flex; justify-content: flex-end;">
+                        <input type="date" id="edit-date-input" required>
+                    </div>
+
+                    <div class="datetime-group" style="display: flex; justify-content: flex-start;">
+                        <input type="time" id="edit-time-input" required>
+                    </div>
+                </div>
+
+                <div class="type-selector">
+                    <button class="type-btn edit-type-btn" data-type="income">Income</button>
+                    <button class="type-btn edit-type-btn selected" data-type="expense">Expense</button>
+                    <button class="type-btn edit-type-btn" data-type="transfer">Transfer</button>
+                </div>
+                <input type="hidden" name="type" value="expense">
+
+                <div class="filter-row">
+                    <button class="view-toggle edit-view-toggle" data-view="wallet">Wallet</button>
+                    <button class="view-toggle edit-view-toggle" data-view="category">Category</button>
+                </div>
+
+                <input type="number" placeholder="Amount" step="0.01" id="edit-amount">
+
+                <!-- Wallet Selection View -->
+                <div class="view-container edit-wallet-view hidden">
+                    <div>
+                        <div class="option-item edit-wallet-option" data-value="cash">
+                            <span>Cash</span>
+                        </div>
+                        <div class="option-item edit-wallet-option" data-value="card">
+                            <span>Card</span>
+                        </div>
+                        <div class="option-item edit-wallet-option" data-value="savings">
+                            <span>Savings</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Selection View -->
+                <div class="view-container edit-category-view hidden">
+                    <div class="grid-view" id="edit-category-grid">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+
+                <input type="text" placeholder="Description" id="edit-description">
+                <div class="form-buttons">
+                    <button class="cancel-btn edit-cancel-btn">Cancel</button>
+                    <button class="submit-btn edit-submit-btn">Save Changes</button>
+                </div>
+                <input type="hidden" id="edit-transaction-id">
+            </div>
+        </div>
+        <!-- END OF NEW "EDIT TRANSACTION" SECTION -->
+
+        <!-- Transaction Popup -->
+        <div id="transaction-popup" class="popup hidden">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h3 id="popup-category">Category</h3>
+                    <button id="close-popup-btn" class="close-btn">×</button>
+                </div>
+                <p><span class="popup-label">Type:</span> <span id="popup-type"></span></p>
+                <p><span class="popup-label">Wallet:</span> <span id="popup-wallet"></span></p>
+                <p><span class="popup-label">Amount:</span> <span id="popup-amount"></span></p>
+                <p><span class="popup-label">Date:</span> <span id="popup-date"></span></p>
+                <p><span class="popup-label">Time:</span> <span id="popup-time"></span></p>
+                <p><span class="popup-label">Description:</span> <span id="popup-description"></span></p>
+                <div class="popup-buttons">
+                    <button id="edit-transaction-btn">Edit</button>
+                    <button id="delete-transaction-btn">Delete</button>
+                </div>
+            </div>
+        </div>
 
 
-        <footer>
-            <div class="footbtn">
-                <i class="material-icons">receipt_long</i>
-                <p>RECEIPT</p>
-            </div>
-            <div class="footbtn">
-                <i class="material-icons">analytics</i>
-                <p>OVERVIEW</p>
-            </div>
-            <div class="footbtn">
-                <i class="material-icons">wallet</i>
-                <p>WALLET</p>
-            </div>
-        </footer>
+    </main>
+
+
+    <footer>
+        <div class="footbtn">
+            <i class="material-icons">receipt_long</i>
+            <p>RECEIPT</p>
+        </div>
+        <div class="footbtn">
+            <i class="material-icons">analytics</i>
+            <p>OVERVIEW</p>
+        </div>
+        <div class="footbtn">
+            <i class="material-icons">wallet</i>
+            <p>WALLET</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 
