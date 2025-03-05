@@ -557,3 +557,27 @@ input[type="time"]:focus {
     margin: 0 auto;
     padding: 20px; /* Added padding here, to be consistent with your previous CSS*/
 }
+
+
+
+
+
+
+.clear-history-btn button {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.clear-history-btn button:hover {
+    background-color: #e0e0e0;
+}
+
+.clear-history-btn button:active {
+    background-color: #d0d0d0;
+}
