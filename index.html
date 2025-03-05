@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+        <header>
+            <div class="logo">
+                <h1>WalletOnline</h1>
+                <p>beta</p>
+            </div>
+
+            <div class="addbtn">
+                <i class="material-icons" style="font-size:48px;color:darkslategrey;">add_circle</i>
+            </div>
+        </header>
+        
+        <main>
+            <div class="page active" id="receipt-page">
+                <div class="toptable">
+                    <div class="toptableinfo valuegreen">
+                        <p class="val">1,888.88</p>
+                        <p class="cat">Income</p>
+                    </div>
+                    
+                    <div class="toptableinfo valuered">
+                        <p class="val">1,888.88</p>
+                        <p class="cat">Expenses</p>
+                    </div>
+
+                    <!-- <div class="toptableinfo valuegreen">
+                        <p class="val">250.00</p>
+                        <p class="cat">Savings</p>
+                    </div> -->
+
+                    <div class="toptableinfo">
+                        <p class="val">50.00</p>
+                        <p class="cat">Balance</p>
+                    </div>
+                </div>
+
+                <div class="receiptarea">
+                    
+                </div>
+            </div>
+            
+            <div class="page" id="overview-page">
+                <h2>Overview Content</h2>
+                <!-- Your overview content here -->
+            </div>
+            
+            <div class="page" id="wallet-page">
+                <h2>Wallet Content</h2>
+                <!-- Your wallet content here -->
+            </div>
+
+            <div class="page" id="add-page">
+                <h2>Add New Transaction</h2>
+                <div class="add-form">
+
+                    <div class="datetime-row">
+                        <div class="datetime-group" style="display: flex; justify-content: flex-end;">
+                            <input type="date" id="date-input" required>
+                            <!-- <label for="date-input" class="datetime-btn">
+                                <span class="datetime-label">Date</span>
+                                <span class="selected-date">Today</span>
+                            </label> -->
+                        </div>
+                    
+                        <div class="datetime-group" style="display: flex; justify-content: flex-start;">
+                            <input type="time" id="time-input" required>
+                            <!-- <label for="time-input" class="datetime-btn">
+                                <span class="datetime-label">Time</span>
+                                <span class="selected-time">Now</span>
+                            </label> -->
+                        </div>
+                    </div>
+                    
+                    <!-- In your add-page HTML, change the initial selected type button -->
+                    <div class="type-selector">
+                        <button class="type-btn" data-type="income">Income</button>
+                        <button class="type-btn selected" data-type="expense">Expense</button>
+                        <button class="type-btn" data-type="transfer">Transfer</button>
+                    </div>
+                    <input type="hidden" name="type" value="expense"> <!-- Changed from income -->
+                    
+
+                    <div class="filter-row">
+                        <button class="view-toggle" data-view="wallet">Wallet</button>
+                        <button class="view-toggle" data-view="category">Category</button>
+                    </div>
+
+                    <input type="number" placeholder="Amount" step="0.01">
+                    
+                    <!-- Wallet Selection View -->
+                    <div class="view-container wallet-view hidden">
+                        <div>
+                            <div class="option-item" data-value="cash">
+                                <!-- Add icon later -->
+                                <span>Cash</span>
+                            </div>
+                            <div class="option-item" data-value="card">
+                                <span>Card</span>
+                            </div>
+                            <div class="option-item" data-value="savings">
+                                <span>Savings</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Category Selection View -->
+                    <div class="view-container category-view hidden">
+                        <div class="grid-view" id="category-grid">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                    </div>
+
+
+                    <input type="text" placeholder="Description">
+                    <div class="form-buttons">
+                        <button class="cancel-btn">Cancel</button>
+                        <button class="submit-btn">Add Transaction</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <footer>
+            <div class="footbtn">
+                <i class="material-icons">receipt_long</i>
+                <p>RECEIPT</p>
+            </div>
+            <div class="footbtn">
+                <i class="material-icons">analytics</i>
+                <p>OVERVIEW</p>
+            </div>
+            <div class="footbtn">
+                <i class="material-icons">wallet</i>
+                <p>WALLET</p>
+            </div>
+        </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

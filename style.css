@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1, h2, p {
+    font-family: Poppins;
+    margin: 0;
+}
+
+header h1 {
+    font-size: 30px;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent whole page scrolling */
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    overflow-y: auto; /* Enable scrolling only for main */
+    position: relative;
+    /* Add padding to account for footer height */
+    padding-bottom: 60px; /* Adjust based on footer height */
+}
+
+footer {
+    background: #f0f0f0;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100; /* Ensure footer stays on top */
+    height: 75px; /* Set explicit height */
+    box-sizing: border-box; /* Include padding in height */
+    gap: 7px;
+
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px; /* Add horizontal padding */
+}
+
+.footbtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: orange;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    flex: 1; /* Make buttons grow equally */
+    max-width: 200px; /* Optional: prevent buttons from getting too wide */
+    min-width: 80px; /* Optional: prevent buttons from getting too narrow */
+    margin: 0 5px; /* Add spacing between buttons */
+    width: 100%; /* Take full available width */
+}
+
+.footbtn.active {
+    background: #4CAF50; /* Green color for active state */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Optional: Add hover effect */
+.footbtn:hover {
+    background: #c08027; /* Darker orange */
+}
+
+.footbtn.active:hover {
+    background: #337b35; /* Darker green */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.footbtn p {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Optional header styling */
+header {
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Ensure proper spacing */
+    align-items: center; /* Vertical alignment */
+}
+
+.logo {
+    display: flex;
+}
+
+.addbtn {
+    cursor: pointer;
+}
+
+.addbtn.hidden {
+    display: none;
+}
+
+/* Add Page Styles */
+#add-page {
+    padding: 20px;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.add-form input, .add-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Poppins;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #cccccc;
+}
+
+.submit-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.type-selector {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.type-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #f8f8f8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: Poppins;
+    font-weight: 500;
+    color: #666;
+}
+
+.type-btn.selected {
+    background: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.type-btn:hover:not(.selected) {
+    background: #e8e8e8;
+}
+
+/* Filter Row */
+.filter-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.view-toggle {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-toggle.active {
+    background: #4CAF50;
+    color: white;
+}
+
+/* View Containers */
+.view-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.option-item {
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-item:hover {
+    background: #f8f8f8;
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Footer hide/show */
+footer.hidden {
+    display: none;
+}
+
+.page {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+}
+
+.toptable {
+    display: flex;
+    justify-content: space-between;
+    background: #acacac;
+    padding: 10px 20px;
+    color: beige;
+}
+
+.toptableinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: inherit;
+    border-radius: 10px;
+    padding: 5px;
+    flex: 1; /* Make buttons grow equally */
+    margin: 0 3px; /* Add spacing between buttons */
+    transition: background-color 0.5s ease;
+}
+
+.toptableinfo p.val{
+    font-weight: 600;
+}
+
+.valuegreen {
+    background-color: #4CAF50;
+}
+
+.valueyellow {
+    background-color:#de8f21;
+}
+
+.valueorange {
+    background-color:#da5411;
+}
+
+.valuered {
+    background-color:firebrick;
+}
+
+.datetime-row {
+    display: flex;
+    gap: 15px;
+    margin: 5px 0;
+    width: 100%; /* Ensure full width */
+}
+
+.datetime-group {
+    flex: 1;
+    min-width: 120px;
+    max-width: 200px; /* Prevent excessive widening */
+}
+
+input[type="date"],
+input[type="time"] {
+    width: calc(100% - 24px); /* Account for padding */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: Poppins;
+    font-size: 14px;
+    background: white;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Make inputs look consistent across browsers */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    padding: 0;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* Hover effects */
+input[type="date"]:hover,
+input[type="time"]:hover {
+    border-color: #4CAF50;
+}
+
+/* Focus states */
+input[type="date"]:focus,
+input[type="time"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.receiptarea {
+    padding: 10px;
+}
+
+.transdiv {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.transcat {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.transtype {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.transright {
+    display: flex;
+    align-items: center;
+}
+
+.transamt {
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.daytitle {
+    padding: 0 10px;
+    font-size: 25px;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.no-transactions {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-style: italic;
+}
