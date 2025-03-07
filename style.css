@@ -558,11 +558,6 @@ input[type="time"]:focus {
     padding: 20px; /* Added padding here, to be consistent with your previous CSS*/
 }
 
-
-
-
-
-
 .clear-history-btn button {
     padding: 8px 15px;
     border: 1px solid #ccc;
@@ -580,4 +575,11 @@ input[type="time"]:focus {
 
 .clear-history-btn button:active {
     background-color: #d0d0d0;
+}
+
+.view-toggle.incomplete-field,
+#add-page input.incomplete-field,
+#edit-page input.incomplete-field { /* Added for edit page inputs as well, if needed */
+    background-color: lightyellow; /* Light yellow background */
+    border: 1px solid orange; /* Optional: Add a border to make it more prominent */
 }

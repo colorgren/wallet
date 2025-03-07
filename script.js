@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', function() {
         transfer: ['Cash', 'Card', 'Savings']
     };
 
-    let selectedWallet = 'cash'; // Default selected wallet (for Add page)
-    let selectedCategory = 'food'; // Default selected category (for Add page)
-    let editSelectedWallet = 'cash'; // Default selected wallet (for Edit page) - NEW
-    let editSelectedCategory = 'food'; // Default selected category (for Edit page) - NEW
+    let selectedWallet; // No default selected wallet anymore
+    let selectedCategory; // No default selected category anymore
+    let editSelectedWallet = 'cash';
+    let editSelectedCategory = 'food';
     let currentTransactionId = null;
 
 
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Wallet/Category Selection - View Toggles (Add Page - same as before)
+    // Wallet/Category Selection - View Toggles (Add Page - MODIFIED)
     viewToggles.forEach(button => {
         button.addEventListener('click', function() {
             viewToggles.forEach(btn => btn.classList.remove('active'));
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Wallet and Category Option Selection (Add Page - same as before)
+    // Wallet and Category Option Selection (Add Page - MODIFIED)
     document.querySelectorAll('.view-container').forEach(viewContainer => {
         viewContainer.addEventListener('click', function(event) {
             if (event.target.classList.contains('option-item')) {
@@ -160,16 +160,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (viewType === 'wallet') {
                     selectedWallet = selectedOption.dataset.value;
+                    const walletToggleButton = Array.from(viewToggles).find(toggle => toggle.dataset.view === 'wallet');
+                    walletToggleButton.classList.remove('incomplete-field'); // Remove yellow when wallet selected
                     viewToggles.forEach(toggle => {
                         if (toggle.dataset.view === 'wallet') {
-                            toggle.textContent = selectedOption.textContent;
+                            toggle.textContent = selectedOption.textContent; // Update toggle text
                         }
                     });
                 } else if (viewType === 'category') {
                     selectedCategory = selectedOption.dataset.value;
+                    const categoryToggleButton = Array.from(viewToggles).find(toggle => toggle.dataset.view === 'category');
+                    categoryToggleButton.classList.remove('incomplete-field'); // Remove yellow when category selected
                     viewToggles.forEach(toggle => {
                         if (toggle.dataset.view === 'category') {
-                            toggle.textContent = selectedOption.textContent;
+                            toggle.textContent = selectedOption.textContent; // Update toggle text
                         }
                     });
                 }
@@ -250,7 +254,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Date/Time Handling (same for both pages, initialize once)
     initializeDateTime();
 
-    // Form Submission (ADD PAGE - same as before, but now only for adding)
+    // Input Event Listeners for real-time validation clear
+    dateInput.addEventListener('input', () => {
+        if (dateInput.value) {
+            dateInput.classList.remove('incomplete-field');
+        }
+    });
+    timeInput.addEventListener('input', () => {
+        if (timeInput.value) {
+            timeInput.classList.remove('incomplete-field');
+        }
+    });
+    amountInput.addEventListener('input', () => {
+        if (amountInput.value && !isNaN(parseFloat(amountInput.value))) {
+            amountInput.classList.remove('incomplete-field');
+        }
+    });
+
+
+    // Form Submission (ADD PAGE - MODIFIED to require Wallet and Category selection and visual cue)
     submitBtn.addEventListener('click', async (e) => {
         e.preventDefault();
 
@@ -260,6 +282,42 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         const transactionType = selectedTypeButton.dataset.type;
+
+        const walletToggleButton = Array.from(viewToggles).find(toggle => toggle.dataset.view === 'wallet');
+        const categoryToggleButton = Array.from(viewToggles).find(toggle => toggle.dataset.view === 'category');
+
+        let isFormValid = true; // Assume form is valid initially
+
+        // Reset all incomplete field styles at the beginning of validation
+        resetIncompleteFieldsStyles();
+
+        if (!dateInput.value) {
+            dateInput.classList.add('incomplete-field');
+            isFormValid = false;
+        }
+        if (!timeInput.value) {
+            timeInput.classList.add('incomplete-field');
+            isFormValid = false;
+        }
+        if (!amountInput.value || isNaN(parseFloat(amountInput.value))) {
+            amountInput.classList.add('incomplete-field');
+            isFormValid = false;
+        }
+        if (!selectedWallet) {
+            walletToggleButton.classList.add('incomplete-field');
+            isFormValid = false;
+        }
+        if (!selectedCategory) {
+            categoryToggleButton.classList.add('incomplete-field');
+            isFormValid = false;
+        }
+
+
+        if (!isFormValid) {
+            alert('Please fill in all required fields (marked in yellow).'); // General alert if any field is incomplete
+            return; // Stop submission if form is not valid
+        }
+
 
         const transaction = {
             date: dateInput.value,
@@ -310,6 +368,12 @@ document.addEventListener('DOMContentLoaded', function() {
             descriptionInput.value = '';
             transactionIdInput.value = ''; // Clear transaction ID after saving
             submitBtn.textContent = 'Add Transaction'; // Reset button text
+            selectedWallet = undefined; // Reset selected wallet for next add
+            selectedCategory = undefined; // Reset selected category for next add
+            setToggleDefaultText(); // Reset toggle button text to default
+            resetIncompleteFieldsStyles(); // Ensure styles are reset on successful submit
+
+
         } catch (error) {
             console.error('Transaction error:', error);
             alert('Failed to save transaction.');
@@ -470,7 +534,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             receiptArea.innerHTML += `
                                 <div class="transdiv" data-transaction-id="${trans.id}">
                                     <div class="transleft">
-                                        <p class="transcat">${trans.category}</p>
+                                        <p class="transcat">${trans.description ? trans.description : trans.category}</p>
                                         <p class="transtype">${trans.wallet}</p>
                                     </div>
                                     <div class="transright">
@@ -534,20 +598,36 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
     function setDefaults() {
-        viewToggles.forEach(toggle => {
-            if (toggle.dataset.view === 'wallet') {
-                toggle.textContent = 'Cash';
-            } else if (toggle.dataset.view === 'category') {
-                toggle.textContent = 'Food';
-            }
-        });
-        selectedWallet = 'cash';
-        selectedCategory = 'food';
+        // Reset view toggle button text to default (no selection)
+        setToggleDefaultText();
 
         // Select 'Expense' type button by default in Add page
         typeButtons.forEach(btn => btn.classList.remove('selected'));
         typeButtons[1].classList.add('selected'); // Assuming 'Expense' is the second button
         updateCategoryView('expense'); // Update categories based on default type
+
+        // Ensure incomplete-field class is removed when going to Add page
+        resetIncompleteFieldsStyles();
+    }
+
+    function resetIncompleteFieldsStyles() {
+        dateInput.classList.remove('incomplete-field');
+        timeInput.classList.remove('incomplete-field');
+        amountInput.classList.remove('incomplete-field');
+        const walletToggleButton = Array.from(viewToggles).find(toggle => toggle.dataset.view === 'wallet');
+        const categoryToggleButton = Array.from(viewToggles).find(toggle => toggle.dataset.view === 'category');
+        walletToggleButton.classList.remove('incomplete-field');
+        categoryToggleButton.classList.remove('incomplete-field');
+    }
+
+    function setToggleDefaultText() { // NEW FUNCTION to reset toggle button text
+        viewToggles.forEach(toggle => {
+            if (toggle.dataset.view === 'wallet') {
+                toggle.textContent = 'Select Wallet'; // Default text
+            } else if (toggle.dataset.view === 'category') {
+                toggle.textContent = 'Select Category'; // Default text
+            }
+        });
     }
 
 
@@ -733,5 +813,5 @@ async function clearTransactionHistory() {
             alert("Error clearing transaction history.");
         };
     };
-    window.location.reload(); 
+    window.location.reload();
 }
